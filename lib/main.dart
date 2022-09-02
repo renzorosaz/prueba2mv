@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 
 import 'features/home/presentation/home_screen.dart';
-import 'widgets/appbar/appBarComponent.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Material App',
-      home: Scaffold(appBar: AppBarTest(), body: HomeScreen()),
+      home: HomeScreen(),
     );
   }
 }

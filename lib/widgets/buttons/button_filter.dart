@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../util/responsive.dart';
+
 class ButtonFilter extends StatelessWidget {
   String pathImage;
   String title;
@@ -14,22 +16,19 @@ class ButtonFilter extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final responsive = Responsive.of(context);
     return Row(
       children: [
         Container(
-            decoration: BoxDecoration(
-              color: const Color.fromRGBO(244, 244, 244, 1),
-              border: Border.all(
-                width: 2.0,
-                color: const Color.fromRGBO(244, 244, 244, 1),
-              ),
-              borderRadius: const BorderRadius.all(
-                  Radius.circular(10) //                 <--- border radius here
+            decoration: const BoxDecoration(
+              color: Color.fromARGB(255, 230, 229, 229),
+              borderRadius: BorderRadius.all(
+                  Radius.circular(11) //                 <--- border radius here
                   ),
             ),
             child: SizedBox(
-                width: 179,
-                height: 41,
+                width: responsive.wp(42),
+                height: responsive.hp(5),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -38,22 +37,24 @@ class ButtonFilter extends StatelessWidget {
                         Text(
                           title,
                           style: TextStyle(
+                              fontSize: responsive.ip(1.4),
                               fontFamily: 'Metropolis',
                               fontWeight: FontWeight.w500),
                         ),
                         notifications == true
                             ? Padding(
-                                padding: const EdgeInsets.only(bottom: 10),
+                                padding:
+                                    EdgeInsets.only(bottom: responsive.ip(1)),
                                 child: Container(
-                                  width: 6,
-                                  height: 6,
-                                  decoration: new BoxDecoration(
+                                  width: responsive.wp(1.3),
+                                  height: responsive.hp(1.3),
+                                  decoration: const BoxDecoration(
                                     color: Color.fromRGBO(39, 136, 77, 1),
                                     shape: BoxShape.circle,
                                   ),
                                 ),
                               )
-                            : SizedBox()
+                            : const SizedBox()
                       ],
                     ),
                     Image.asset(
