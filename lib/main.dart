@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
           appBar: AppBar(
             automaticallyImplyLeading: false,
-            backgroundColor: Color.fromRGBO(244, 244, 244, 1),
+            backgroundColor: const Color.fromRGBO(244, 244, 244, 1),
             elevation: 1,
             toolbarHeight: 150,
             flexibleSpace: Container(
@@ -45,12 +45,13 @@ class MyApp extends StatelessWidget {
                         ),
                       ),
                       Container(
-                          width: 60,
+                          width: 70,
                           decoration: BoxDecoration(
                               border: Border.all(
-                                  color: Colors.green.shade800, width: 3),
+                                  color: const Color.fromRGBO(39, 136, 77, 1),
+                                  width: 3),
                               borderRadius:
-                                  const BorderRadius.all(Radius.circular(13))),
+                                  const BorderRadius.all(Radius.circular(10))),
                           child: Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Row(
@@ -58,13 +59,13 @@ class MyApp extends StatelessWidget {
                               children: [
                                 Image.asset('assets/icons/ic_add.png',
                                     width: 20, height: 20),
-                                Container(
+                                const SizedBox(
                                     child: Text("0",
                                         style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 16,
-                                          color: Colors.green.shade800,
-                                          fontFamily: 'Axiforma',
+                                          color: Color.fromRGBO(39, 136, 77, 1),
+                                          fontFamily: 'Metropolis',
                                         )))
                               ],
                             ),
@@ -81,25 +82,25 @@ class MyApp extends StatelessWidget {
                           color: Colors.green.shade800,
                           size: 40,
                         ),
-                        Container(
-                            width: 256,
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(12.0),
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: Colors.grey.withOpacity(0.5),
-                                  spreadRadius: 2,
-                                  blurRadius: 5,
-                                  offset: Offset(
-                                      0, 6), // changes position of shadow
+                        Expanded(
+                          child: Container(
+                              height: 38,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                borderRadius: const BorderRadius.all(
+                                  Radius.circular(10.0),
                                 ),
-                              ],
-                            ),
-                            child: Padding(
-                              padding: const EdgeInsets.all(8.0),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.3),
+                                    spreadRadius: 1,
+
+                                    blurRadius: 8,
+                                    offset: const Offset(
+                                        0, 6), // changes position of shadow
+                                  ),
+                                ],
+                              ),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
@@ -107,32 +108,49 @@ class MyApp extends StatelessWidget {
                                   Container(
                                     height: 32,
                                     width: 200,
+                                    padding: const EdgeInsets.only(
+                                        top: 5, bottom: 5, left: 12),
                                     decoration: BoxDecoration(
                                       //color: Colors.grey[350],
                                       color: Colors.white,
-                                      borderRadius: BorderRadius.circular(5),
+                                      borderRadius: BorderRadius.circular(12),
                                     ),
-                                    child: TextField(
+                                    child: const TextField(
                                       enabled: false,
                                       decoration: InputDecoration(
                                         hintText: "Buscar en market",
                                         hintStyle: TextStyle(
                                             color: Colors.black26,
+                                            fontFamily: 'Metropolis',
+                                            fontWeight: FontWeight.w300,
                                             fontSize: 14),
                                         border: InputBorder.none,
                                       ),
                                     ),
                                   ),
                                   Container(
-                                      decoration: BoxDecoration(),
-                                      child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.green.shade800,
+                                        border: Border.all(
+                                          width: 2.0,
+                                          color: Colors.green.shade800,
+                                        ),
+                                        borderRadius: const BorderRadius.all(
+                                            Radius.circular(
+                                                10) //                 <--- border radius here
+                                            ),
+                                      ),
+                                      child: SizedBox(
+                                          width: 48,
                                           child: Image.asset(
-                                        'assets/icons/ic_find.png',
-                                        color: Colors.green,
-                                      )))
+                                            'assets/icons/ic_find.png',
+                                            width: 38,
+                                            height: 38,
+                                            color: Colors.white,
+                                          )))
                                 ],
-                              ),
-                            ))
+                              )),
+                        )
                       ],
                     )
                   ],
