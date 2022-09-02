@@ -88,6 +88,15 @@ class MyApp extends StatelessWidget {
                               borderRadius: BorderRadius.all(
                                 Radius.circular(12.0),
                               ),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 2,
+                                  blurRadius: 5,
+                                  offset: Offset(
+                                      0, 6), // changes position of shadow
+                                ),
+                              ],
                             ),
                             child: Padding(
                               padding: const EdgeInsets.all(8.0),
