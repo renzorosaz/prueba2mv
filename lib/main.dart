@@ -9,7 +9,15 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       home: Scaffold(
           appBar: AppBar(
-            title: Text('Material App Bar'),
+            automaticallyImplyLeading: false,
+            backgroundColor: Color.fromRGBO(244, 244, 244, 1),
+            elevation: 1,
+            toolbarHeight: 75,
+            title: const Text("Inicio",
+                style: TextStyle(
+                    fontFamily: 'Metropolis',
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black54)),
           ),
           body: HomeScreen()),
     );
@@ -21,6 +29,12 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      body: Container(
+          child: Text(
+        "SNACKS",
+        style: TextStyle(fontSize: 20),
+      )),
+    );
   }
 }
