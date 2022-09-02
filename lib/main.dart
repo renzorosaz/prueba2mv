@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'features/home/presentation/home_screen.dart';
-import 'widgets/appBarComponent.dart';
+import 'widgets/appbar/appBarComponent.dart';
 
 void main() => runApp(MyApp());
 
