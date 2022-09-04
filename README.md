@@ -1,16 +1,20 @@
 # prueba2_mv
 
-A new Flutter project.
+Challenge MV
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+DEVELOPMENT MARKET DESIGN
 
-A few resources to get you started if this is your first Flutter project:
+IF YOU CAN NOT INSTALL THE APP on your device , contact me.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+//TO DO:
+Review Android files to install on devices with API 31.
+Create interaction of the components:
+ButtonFilter . State event
+Buttons. State event
+List Button .Topis state event
+ListView brands. state event
+ListView products . state event
+//
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
