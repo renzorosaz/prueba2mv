@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:prueba2_mv/widgets/card_product.dart';
 
 import '../../../util/responsive.dart';
 import '../../../widgets/buttons/button_filter.dart';
 import '../../../widgets/buttons/button_topic.dart';
 import '../../../widgets/modals/modal_select_brand_component.dart';
+import 'bloc/brand_bloc.dart';
 import 'widgets/appBar/appBarMarket_component.dart';
 
 class MarketHomeScreen extends StatelessWidget {
@@ -12,6 +14,7 @@ class MarketHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final siteBloc = BlocProvider.of<BrandBloc>(context);
     final responsive = Responsive.of(context);
     return Scaffold(
       body: Padding(
@@ -44,6 +47,8 @@ class MarketHomeScreen extends StatelessWidget {
                           pathImage: "assets/icons/ic_shape.png",
                           notifications: false),
                       SizedBox(width: responsive.wp(5)),
+
+                      // BlocBuilder<BrandBloc,String>("Bloc")
                       GestureDetector(
                         onTap: () {
                           showModalBottomSheet(
