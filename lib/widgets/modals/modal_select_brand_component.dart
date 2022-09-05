@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba2_mv/features/market/presentation/bloc/brand_bloc.dart';
 import 'package:prueba2_mv/features/market/presentation/widgets/checkbox/checkbox_state.dart';
 import 'package:prueba2_mv/style/fonts.dart';
 
-import '../../features/market/presentation/bloc/brand_event.dart';
+import '../../features/market/presentation/bloc/brands/brand_bloc.dart';
+import '../../features/market/presentation/bloc/brands/brand_event.dart';
 import '../../style/colors.dart';
 import '../../util/responsive.dart';
 
@@ -27,14 +27,11 @@ class _ModalSelectedBrandState extends State<ModalSelectedBrand> {
     CheckBoxState(title: "Brutoni"),
     CheckBoxState(title: "Nutrishake"),
   ];
-  final Map<String, bool> _map = {};
-  int _count = 0;
   bool toggleIcon = false;
 
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive.of(context);
-    bool value = false;
 
     return Container(
         width: 345,
@@ -42,16 +39,21 @@ class _ModalSelectedBrandState extends State<ModalSelectedBrand> {
           padding: const EdgeInsets.only(right: 16, left: 19, top: 16),
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Padding(
-              padding: EdgeInsets.only(left: 336, right: 16),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(12),
-                child: Container(
-                  color: AppColorPalette.grey.withOpacity(0.7),
-                  child: Icon(
-                    size: 23,
-                    Icons.close,
-                    color: Colors.white,
+            GestureDetector(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: Padding(
+                padding: EdgeInsets.only(left: 336, right: 16),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(12),
+                  child: Container(
+                    color: AppColorPalette.grey.withOpacity(0.7),
+                    child: Icon(
+                      size: 23,
+                      Icons.close,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               ),

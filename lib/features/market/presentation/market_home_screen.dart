@@ -6,7 +6,9 @@ import '../../../util/responsive.dart';
 import '../../../widgets/buttons/button_filter.dart';
 import '../../../widgets/buttons/button_topic.dart';
 import '../../../widgets/modals/modal_select_brand_component.dart';
-import 'bloc/brand_bloc.dart';
+import 'bloc/brands/brand_bloc.dart';
+import 'bloc/topic/topic_bloc.dart';
+import 'bloc/topic/topic_bloc.dart';
 import 'widgets/appBar/appBarMarket_component.dart';
 
 class MarketHomeScreen extends StatelessWidget {
@@ -79,25 +81,59 @@ class MarketHomeScreen extends StatelessWidget {
                     ],
                   ),
                   SizedBox(height: responsive.hp(3)),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      ButtonTopic(
-                        title: "Etiqueta a",
-                        enable: false,
-                      ),
-                      ButtonTopic(title: "Etiqueta bc", enable: false),
-                      ButtonTopic(title: "Snacks", enable: true),
-                      ButtonTopic(title: "Etiqueta b", enable: false),
-                    ],
-                  ),
+                  // SizedBox(width: responsive.wp(5)),
+                  //     BlocBuilder<BrandBloc, String>(
+                  //       builder: (context, selecOption) {
+                  //         return GestureDetector(
+                  //           onTap: () {
+                  //             showModalBottomSheet(
+                  //                 context: context,
+                  //                 backgroundColor: Colors.white,
+                  //                 enableDrag: true,
+                  //                 builder: (BuildContext context) {
+                  //                   return StatefulBuilder(
+                  //                     builder: (BuildContext context,
+                  //                         StateSetter setState) {
+                  //                       return ModalSelectedBrand(
+                  //                           brandBloc: brandBloc);
+                  //                     },
+                  //                   );
+                  //                 },
+                  //                 shape: const RoundedRectangleBorder(
+                  //                     borderRadius: BorderRadius.only(
+                  //                         topLeft: Radius.circular(28),
+                  //                         topRight: Radius.circular(28))));
+                  //           },
+                  //           child: ButtonFilter(
+                  //               title: "Marcas",
+                  //               pathImage: "assets/icons/ic_arrow_down.png",
+                  //               notifications: true),
+                  //         );
+                  //       },
+                  //     )
+
+                  BlocBuilder<TopicBloc, String>(
+                      builder: (context, selecOption) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        ButtonTopic(
+                          title: "Etiqueta a",
+                          enable: false,
+                        ),
+                        ButtonTopic(title: "Etiqueta bc", enable: false),
+                        ButtonTopic(title: "Snacks", enable: true),
+                        ButtonTopic(title: "Etiqueta b", enable: false),
+                      ],
+                    );
+                  }),
+
                   SizedBox(height: responsive.hp(0.5)),
                   SingleChildScrollView(
                     child: Container(
                       width: responsive.wp(90),
                       height: responsive.hp(53.8),
                       child: GridView.count(
-                          physics: const NeverScrollableScrollPhysics(),
                           primary: false,
                           crossAxisCount: 2,
                           mainAxisSpacing: responsive.wp(2),
