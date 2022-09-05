@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:prueba2_mv/features/market/presentation/widgets/checkbox/checkbox_state.dart';
 import 'package:prueba2_mv/style/fonts.dart';
 
 import '../../features/market/presentation/bloc/brands/brand_bloc.dart';
 import '../../features/market/presentation/bloc/brands/brand_event.dart';
+import '../../features/market/presentation/widgets/statesComp/checkbox_state.dart';
 import '../../style/colors.dart';
 import '../../util/responsive.dart';
 
@@ -20,12 +20,12 @@ class ModalSelectedBrand extends StatefulWidget {
 
 class _ModalSelectedBrandState extends State<ModalSelectedBrand> {
   final listBrands = [
-    CheckBoxState(title: "Lakanto"),
-    CheckBoxState(title: "Lamborgini"),
-    CheckBoxState(title: "Marcan comercial"),
-    CheckBoxState(title: "Snacksanto"),
-    CheckBoxState(title: "Brutoni"),
-    CheckBoxState(title: "Nutrishake"),
+    CheckBoxStateModal(title: "Lakanto"),
+    CheckBoxStateModal(title: "Lamborgini"),
+    CheckBoxStateModal(title: "Marcan comercial"),
+    CheckBoxStateModal(title: "Snacksanto"),
+    CheckBoxStateModal(title: "Brutoni"),
+    CheckBoxStateModal(title: "Nutrishake"),
   ];
   bool toggleIcon = false;
 
