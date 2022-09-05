@@ -18,10 +18,10 @@ class MarketHomeScreen extends StatelessWidget {
   MarketHomeScreen({Key? key}) : super(key: key);
 
   final listTopics = [
-    SelectTopicModal(title: "Etiqueta a", id: 0),
-    SelectTopicModal(title: "Etiqueta bc", id: 1),
-    SelectTopicModal(title: "Snacks", id: 2),
-    SelectTopicModal(title: "Etiqueta bc", id: 3),
+    SelectTopicModal(title: "Etiqueta a", id: 0, value: false),
+    SelectTopicModal(title: "Etiqueta bc", id: 1, value: false),
+    SelectTopicModal(title: "Snacks", id: 2, value: false),
+    SelectTopicModal(title: "Etiqueta bc", id: 3, value: false),
   ];
 
   String selected = "";
@@ -102,7 +102,7 @@ class MarketHomeScreen extends StatelessWidget {
                         SizedBox(height: responsive.hp(1)),
                         SizedBox(
                           width: 400,
-                          height: 90,
+                          height: 30,
                           child: ListView.separated(
                               separatorBuilder: (_, d) {
                                 return SizedBox(width: 5);
@@ -112,14 +112,15 @@ class MarketHomeScreen extends StatelessWidget {
                               itemBuilder: (context, index) {
                                 return BlocBuilder<TopicBloc, String>(
                                     builder: (context, selectOption) {
-                                  print(selectOption);
+                                  print("valor de seleccion " + selectOption);
                                   return BlocBuilder<TopicBloc, String>(
                                       builder: (context, state) {
-                                    if (selectOption == index) {
-                                      print("se pinta");
-                                    } else {
-                                      print("no se pinta");
-                                    }
+                                    print("valor de estado " + state);
+                                    // if (selectOption == index) {
+                                    //   print("se pinta");
+                                    // } else {
+                                    //   print("no se pinta");
+                                    // }
                                     return ButtonTopic(
                                       index: index,
                                       lstTopic: listTopics,

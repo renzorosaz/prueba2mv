@@ -35,6 +35,7 @@ class _ButtonTopicState extends State<ButtonTopic> {
     super.initState();
   }
 
+  bool active = false;
   @override
   Widget build(BuildContext context) {
     final topicBloc = BlocProvider.of<TopicBloc>(context);
@@ -42,27 +43,33 @@ class _ButtonTopicState extends State<ButtonTopic> {
     final responsive = Responsive.of(context);
     return GestureDetector(
       onTap: () {
-        print(widget.index);
-        topicBloc.add(ChangeTopic(widget.index.toString()));
+        //print("dar click gesture " + widget.index.toString());
+        active = true;
+        topicBloc.add(ChangeTopic(active.toString()));
 
-        // setState(() {
-        //   for (var element in widget.lstTopic) {
-        //     element.value = false;
-        //   }
-        //   //widget.index = value;
+        setState(() {
+          for (var element in widget.lstTopic) {
+            // active = false;
+            if (widget.index == selectedIndex) {
+              selectedIndex = widget.index;
+              print("se activa uno");
+            } else {
+              // print("se  desactiva otros");
+            }
+            //  element = false;
+          }
+          // widget.index = value;
+        });
 
-        //   selectedIndex = widget.index;
-        // });
-
-        print(widget.index);
+        //print(widget.index);
       },
       child: Container(
           decoration: BoxDecoration(
-            color: selectedIndex == widget.index ? Colors.white : Colors.black,
+            color: active == true ? Colors.black : Colors.white,
             border: Border.all(
               width: 1.0,
               // ignore: unrelated_type_equality_checks
-              color: Colors.black,
+              color: active == true ? Colors.black : Colors.grey,
             ),
             borderRadius: const BorderRadius.all(Radius.circular(30)),
           ),
@@ -76,7 +83,7 @@ class _ButtonTopicState extends State<ButtonTopic> {
             child: Text(widget.topic.title,
                 style: AppTypographyPalette.textFont300.copyWith(
                   fontSize: responsive.ip(1.39),
-                  color: selectedIndex == widget.index ? Colors.black : null,
+                  color: active == true ? Colors.white : Colors.black,
                 )),
           ))),
     );
