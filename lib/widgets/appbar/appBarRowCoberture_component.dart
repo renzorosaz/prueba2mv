@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../style/colors.dart';
+import '../../style/fonts.dart';
 import '../../util/responsive.dart';
 
 class AppBarRowCoberture extends StatelessWidget {
@@ -29,18 +31,17 @@ class AppBarRowCoberture extends StatelessWidget {
                   width: 19,
                 ),
                 Text("Consultar cobertura",
-                    style: TextStyle(
-                        color: Color.fromRGBO(103, 103, 105, 1),
-                        fontFamily: 'Metropolis',
-                        fontSize: responsive.ip(1.4),
-                        fontWeight: FontWeight.w500)),
+                    style: AppTypographyPalette.textFont500.copyWith(
+                      fontSize: responsive.ip(1.4),
+                      color: AppColorPalette.grey,
+                    )),
               ],
             ),
           ),
           const Icon(
             Icons.keyboard_arrow_down_rounded,
             size: 24,
-            color: Color.fromRGBO(103, 103, 105, 1),
+            color: AppColorPalette.grey,
           )
         ],
       ),

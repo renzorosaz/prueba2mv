@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../style/colors.dart';
+import '../../style/fonts.dart';
 import '../../util/responsive.dart';
 
 class ButtonTopic extends StatelessWidget {
@@ -16,9 +18,7 @@ class ButtonTopic extends StatelessWidget {
           color: enable ? Colors.black : null,
           border: Border.all(
             width: 1.0,
-            color: enable
-                ? Colors.black
-                : const Color.fromARGB(255, 138, 138, 141),
+            color: enable ? Colors.black : AppColorPalette.grey,
           ),
           borderRadius: const BorderRadius.all(Radius.circular(30)),
         ),
@@ -29,14 +29,11 @@ class ButtonTopic extends StatelessWidget {
               left: responsive.ip(1),
               top: responsive.ip(1),
               bottom: responsive.ip(1)),
-          child: Text(
-            title,
-            style: TextStyle(
-                fontFamily: 'Metropolis',
-                color: enable ? Colors.white : Colors.black,
+          child: Text(title,
+              style: AppTypographyPalette.textFont300.copyWith(
                 fontSize: responsive.ip(1.39),
-                fontWeight: FontWeight.w300),
-          ),
+                color: enable ? Colors.white : Colors.black,
+              )),
         )));
   }
 }

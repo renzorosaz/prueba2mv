@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../style/colors.dart';
+import '../style/fonts.dart';
 import '../util/responsive.dart';
 
 class CardProduct extends StatelessWidget {
@@ -31,7 +33,32 @@ class CardProduct extends StatelessWidget {
         clipBehavior: Clip.antiAlias,
         child: Column(
           children: [
-            Image.asset(pathImage),
+            Stack(children: [
+              Image.asset(pathImage),
+              inStock > 0
+                  ? Padding(
+                      padding: const EdgeInsets.only(left: 7, top: 5),
+                      child: Container(
+                        width: responsive.wp(24),
+                        height: responsive.hp(2.5),
+                        decoration: const BoxDecoration(
+                          color: AppColorPalette.green,
+                          borderRadius: BorderRadius.all(Radius.circular(
+                                  45) //                 <--- border radius here
+                              ),
+                        ),
+                        child: Center(
+                          child: Text('En oferta',
+                              style: TextStyle(
+                                  fontSize: responsive.ip(1.2),
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w300,
+                                  fontFamily: 'Metropolis')),
+                        ),
+                      ),
+                    )
+                  : SizedBox(),
+            ]),
             Container(
               padding: EdgeInsets.only(
                   top: responsive.ip(1),
@@ -42,20 +69,14 @@ class CardProduct extends StatelessWidget {
                 children: [
                   Text(
                     description,
-                    style: TextStyle(
-                        height: 1.3,
-                        wordSpacing: responsive.ip(1.23),
-                        fontSize: responsive.ip(1.5),
-                        color: Colors.black,
-                        fontFamily: 'Metropolis'),
+                    style: AppTypographyPalette.description
+                        .copyWith(fontSize: responsive.ip(1.5)),
                   ),
                   SizedBox(height: responsive.hp(0.5)),
                   Text(
                     presentation,
-                    style: TextStyle(
-                        fontSize: responsive.ip(1.4),
-                        color: Color.fromARGB(255, 138, 138, 141),
-                        fontFamily: 'Metropolis'),
+                    style: AppTypographyPalette.presentation
+                        .copyWith(fontSize: responsive.ip(1.4)),
                   ),
                   SizedBox(height: responsive.hp(1)),
                   Text(
@@ -95,7 +116,7 @@ class CardProduct extends StatelessWidget {
                       width: responsive.wp(29),
                       height: responsive.hp(3.8),
                       decoration: const BoxDecoration(
-                        color: Color.fromRGBO(39, 136, 77, 1),
+                        color: AppColorPalette.green,
                         borderRadius: BorderRadius.all(Radius.circular(
                                 45) //                 <--- border radius here
                             ),

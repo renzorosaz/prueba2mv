@@ -1,41 +1,62 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:prueba2_mv/features/market/presentation/bloc/brand_bloc.dart';
+import 'package:prueba2_mv/features/market/presentation/widgets/checkbox/checkbox_state.dart';
+import 'package:prueba2_mv/style/fonts.dart';
 
+import '../../features/market/presentation/bloc/brand_event.dart';
+import '../../style/colors.dart';
 import '../../util/responsive.dart';
 
 class ModalSelectedBrand extends StatefulWidget {
-  const ModalSelectedBrand({Key? key}) : super(key: key);
+  final BrandBloc brandBloc;
+
+  const ModalSelectedBrand({Key? key, required this.brandBloc})
+      : super(key: key);
 
   @override
   State<ModalSelectedBrand> createState() => _ModalSelectedBrandState();
 }
 
 class _ModalSelectedBrandState extends State<ModalSelectedBrand> {
-  List<String> listBrands = [
-    "Lakanto",
-    "Nutrishake",
-    "Marcan comercial",
-    "Snacksanto",
-    "Lakanto",
-    "Nutrishake",
+  final listBrands = [
+    CheckBoxState(title: "Lakanto"),
+    CheckBoxState(title: "Lamborgini"),
+    CheckBoxState(title: "Marcan comercial"),
+    CheckBoxState(title: "Snacksanto"),
+    CheckBoxState(title: "Brutoni"),
+    CheckBoxState(title: "Nutrishake"),
   ];
   final Map<String, bool> _map = {};
   int _count = 0;
+  bool toggleIcon = false;
 
   @override
   Widget build(BuildContext context) {
     final responsive = Responsive.of(context);
+    bool value = false;
 
     return Container(
-      width: 345,
-      child: Padding(
-        padding: const EdgeInsets.only(right: 16, left: 16, top: 16),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        width: 345,
+        child: Padding(
+          padding: const EdgeInsets.only(right: 16, left: 19, top: 16),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Padding(
-              padding: EdgeInsets.only(left: 348, right: 14),
-              child: Icon(Icons.close),
+              padding: EdgeInsets.only(left: 336, right: 16),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Container(
+                  color: AppColorPalette.grey.withOpacity(0.7),
+                  child: Icon(
+                    size: 23,
+                    Icons.close,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
+            const SizedBox(height: 14),
             Text("Marcas",
                 style: TextStyle(
                     fontSize: 18,
@@ -43,49 +64,66 @@ class _ModalSelectedBrandState extends State<ModalSelectedBrand> {
                     fontWeight: FontWeight.bold,
                     color: Colors.black)),
             const SizedBox(height: 14),
-            Expanded(
-              child: ListView.builder(
-                itemCount: listBrands.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return Container(
-                    width: 400,
-                    height: 58,
-                    child: ListView.builder(itemBuilder: (_, i) {
-                      return Container(
-                        width: 345,
-                        height: 52,
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Text(listBrands[index]),
-                              Container(
-                                width: responsive.wp(5),
-                                height: responsive.hp(2.5),
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(3),
-                                  color: Colors.white,
-                                  boxShadow: const [
-                                    BoxShadow(
-                                        color: Colors.grey, spreadRadius: 2),
-                                  ],
+            Container(
+                width: 500,
+                height: 350,
+                child: ListView.builder(
+                    itemCount: listBrands.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(listBrands[index].title,
+                              style: AppTypographyPalette.titleSub.copyWith(
+                                  fontSize: responsive.ip(1.3),
+                                  fontWeight: FontWeight.w500)),
+                          BlocBuilder<BrandBloc, String>(
+                            builder: (context, state) {
+                              return Checkbox(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(5),
                                 ),
-                              )
-                            ],
+                                activeColor: listBrands[index].value == true
+                                    ? Colors.green
+                                    : Colors.grey,
+                                value: listBrands[index].value,
+                                onChanged: (value) {
+                                  setState(() {
+                                    listBrands[index].value = value!;
+                                  });
+                                  widget.brandBloc
+                                      .add(ChangeBrand(value.toString()));
+                                },
+                              );
+                            },
                           ),
-                        ),
+                        ],
                       );
-                    }),
-                  );
+                    })),
+            Container(
+              width: 450,
+              height: 40,
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                    primary: AppColorPalette.green,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                      20,
+                    ))),
+                onPressed: () {
+                  Navigator.pop(context);
                 },
+                child: Text(
+                  'Filtrar ( 74 productos)',
+                  style: AppTypographyPalette.titleSub.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontSize: responsive.ip(2)),
+                ),
               ),
-            ),
-            const SizedBox(height: 30),
-          ],
-        ),
-      ),
-    );
+            )
+          ]),
+        ));
   }
 }
 

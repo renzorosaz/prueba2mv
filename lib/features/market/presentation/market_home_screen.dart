@@ -14,7 +14,7 @@ class MarketHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final siteBloc = BlocProvider.of<BrandBloc>(context);
+    final brandBloc = BlocProvider.of<BrandBloc>(context);
     final responsive = Responsive.of(context);
     return Scaffold(
       body: Padding(
@@ -47,33 +47,34 @@ class MarketHomeScreen extends StatelessWidget {
                           pathImage: "assets/icons/ic_shape.png",
                           notifications: false),
                       SizedBox(width: responsive.wp(5)),
-
-                      // BlocBuilder<BrandBloc,String>("Bloc")
-                      GestureDetector(
-                        onTap: () {
-                          showModalBottomSheet(
-                              context: context,
-                              backgroundColor: Colors.white,
-                              enableDrag: true,
-                              builder: (BuildContext context) {
-                                return StatefulBuilder(
-                                  builder: (BuildContext context,
-                                      StateSetter setState) {
-                                    return ModalSelectedBrand(
-                                        //siteBloc: siteBloc
-                                        );
+                      BlocBuilder<BrandBloc, String>(
+                        builder: (context, selecOption) {
+                          return GestureDetector(
+                            onTap: () {
+                              showModalBottomSheet(
+                                  context: context,
+                                  backgroundColor: Colors.white,
+                                  enableDrag: true,
+                                  builder: (BuildContext context) {
+                                    return StatefulBuilder(
+                                      builder: (BuildContext context,
+                                          StateSetter setState) {
+                                        return ModalSelectedBrand(
+                                            brandBloc: brandBloc);
+                                      },
+                                    );
                                   },
-                                );
-                              },
-                              shape: const RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(28),
-                                      topRight: Radius.circular(28))));
+                                  shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(28),
+                                          topRight: Radius.circular(28))));
+                            },
+                            child: ButtonFilter(
+                                title: "Marcas",
+                                pathImage: "assets/icons/ic_arrow_down.png",
+                                notifications: true),
+                          );
                         },
-                        child: ButtonFilter(
-                            title: "Marcas",
-                            pathImage: "assets/icons/ic_arrow_down.png",
-                            notifications: true),
                       )
                     ],
                   ),

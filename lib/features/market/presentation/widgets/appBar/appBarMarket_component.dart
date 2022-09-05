@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../style/colors.dart';
 import '../../../../../util/responsive.dart';
 import '../../../../../widgets/appbar/appBarRowCoberture_component.dart';
 import '../../../../../widgets/appbar/appBarRowFinder_component.dart';
@@ -13,7 +14,7 @@ class AppBarMarketComponent extends StatelessWidget {
     final responsive = Responsive.of(context);
     return Container(
       decoration: const BoxDecoration(
-        color: Color.fromRGBO(244, 244, 244, 1),
+        color: AppColorPalette.white,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

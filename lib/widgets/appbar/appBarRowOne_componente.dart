@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../style/colors.dart';
+import '../../style/fonts.dart';
 import '../../util/responsive.dart';
 
 class AppBarRowOne extends StatelessWidget {
@@ -20,19 +22,15 @@ class AppBarRowOne extends StatelessWidget {
               Image.asset('assets/icons/ic_home.png', width: responsive.ip(2)),
               SizedBox(width: responsive.hp(1)),
               Text("Inicio",
-                  style: TextStyle(
-                      fontFamily: 'Metropolis',
-                      fontSize: responsive.ip(1.8),
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black87))
+                  style: AppTypographyPalette.titleSub
+                      .copyWith(fontSize: responsive.ip(1.8)))
             ],
           ),
         ),
         Container(
             width: 70,
             decoration: BoxDecoration(
-                border: Border.all(
-                    color: const Color.fromRGBO(39, 136, 77, 1), width: 3),
+                border: Border.all(color: AppColorPalette.green, width: 3),
                 borderRadius: const BorderRadius.all(Radius.circular(10))),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -40,14 +38,12 @@ class AppBarRowOne extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Image.asset('assets/icons/ic_add.png', width: 20, height: 20),
-                  const SizedBox(
+                  SizedBox(
                       child: Text("0",
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                            color: Color.fromRGBO(39, 136, 77, 1),
-                            fontFamily: 'Metropolis',
-                          )))
+                          style: AppTypographyPalette.titleSub.copyWith(
+                              fontSize: responsive.ip(1.5),
+                              fontWeight: FontWeight.bold,
+                              color: AppColorPalette.green)))
                 ],
               ),
             ))

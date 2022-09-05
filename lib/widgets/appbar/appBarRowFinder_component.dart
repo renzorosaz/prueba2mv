@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../style/colors.dart';
+import '../../style/fonts.dart';
 import '../../util/responsive.dart';
 
 class AppBarRowFinder extends StatelessWidget {
@@ -14,9 +16,9 @@ class AppBarRowFinder extends StatelessWidget {
           EdgeInsets.only(left: responsive.ip(1.5), right: responsive.ip(1.5)),
       child: Row(
         children: [
-          Icon(
+          const Icon(
             Icons.arrow_back_rounded,
-            color: Colors.green.shade800,
+            color: AppColorPalette.green,
             size: 40,
           ),
           SizedBox(
@@ -32,7 +34,7 @@ class AppBarRowFinder extends StatelessWidget {
                   ),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.grey.withOpacity(0.3),
+                      color: AppColorPalette.grey.withOpacity(0.3),
                       spreadRadius: 1,
 
                       blurRadius: 8,
@@ -57,21 +59,20 @@ class AppBarRowFinder extends StatelessWidget {
                         enabled: false,
                         decoration: InputDecoration(
                           hintText: "Buscar en market",
-                          hintStyle: TextStyle(
-                              color: Colors.black26,
-                              fontFamily: 'Metropolis',
+                          hintStyle: AppTypographyPalette.titleSub.copyWith(
+                              fontSize: responsive.ip(1.4),
                               fontWeight: FontWeight.w500,
-                              fontSize: responsive.ip(1.4)),
+                              color: Colors.black26),
                           border: InputBorder.none,
                         ),
                       ),
                     ),
                     Container(
                         decoration: BoxDecoration(
-                          color: Colors.green.shade800,
+                          color: AppColorPalette.green,
                           border: Border.all(
                             width: 2.0,
-                            color: Colors.green.shade800,
+                            color: AppColorPalette.green,
                           ),
                           borderRadius: const BorderRadius.all(Radius.circular(
                                   10) //                 <--- border radius here
